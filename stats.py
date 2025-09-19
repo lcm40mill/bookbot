@@ -3,8 +3,21 @@ def get_num_words(text):
     return len(words)
 
 def get_char_count(text):
-    lower_case_text = text.lower()
-    char_count = {}
-    for char in lower_case_text:
-        char_count[char] = char_count.get(char,0)+1
-    return char_count
+    chars = {}
+    for char in text:
+        lowered = char.lower()
+        if lowered in chars:
+            chars[lowered] += 1
+        else:
+            chars[lowered] = 1         
+    return chars
+
+def sort_on(dt):
+    return dt["num"]
+
+def dict_sort(dict):
+    sorted= []
+    for c in dict:
+        sorted.append({"char": c, "num":dict[c]})
+    sorted.sort(reverse=True, key=sort_on)
+    return sorted
